@@ -8,6 +8,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var jwtConfig = new JWTConfig();
 builder.Configuration.GetSection("JWTConfig").Bind(jwtConfig);
 builder.Services.AddSingleton(jwtConfig);
@@ -33,8 +36,11 @@ builder.Services
     });
 
 var app = builder.Build();
+
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapGet("/hellosystem", (ILogger<Program> logger, HttpContext context) =>
 {
@@ -68,7 +74,7 @@ app.MapPost("/login", [AllowAnonymous] (ILogger<Program> logger, LoginModel logi
 
         var claims = new Claim[] {
                 new Claim(ClaimTypes.Role, "admin"),
-                new Claim(ClaimTypes.Name, "¹ðËØÎ°"),
+                new Claim(ClaimTypes.Name, "æ¡‚ç´ ä¼Ÿ"),
                 new Claim(ClaimTypes.Sid, login.UserName),
                 new Claim(ClaimTypes.Expiration, now.AddSeconds(jwtConfig.Expires).ToString())
                 };

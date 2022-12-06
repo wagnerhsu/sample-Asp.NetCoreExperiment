@@ -41,6 +41,6 @@ await app.RunAsync();
 
 //static async Task GetPerson(HttpContext http)
 //{
-//    var list = new List<dynamic> { new { id = 1, name = "ÕÅÈý", sex = true, age = 20 } };
+//    var list = new List<dynamic> { new { id = 1, name = "å¼ ä¸‰", sex = true, age = 20 } };
 //    await http.Response.WriteAsJsonAsync(list);
 //}
